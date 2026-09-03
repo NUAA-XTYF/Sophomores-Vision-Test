@@ -1,0 +1,38 @@
+{
+    "name": "Vision Development Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "INSTALL_MVS": "false"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-iot.vscode-ros",
+                "ms-python.python",
+                "twxs.cmake",
+                "ms-vscode.cmake-tools",
+                "ms-azuretools.vscode-docker",
+                "mhutchie.git-graph"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "python.defaultInterpreterPath": "/usr/bin/python3",
+                "lldb.launch.sourceLanguages": [
+                    "cpp",
+                    "c"
+                ]
+            }
+        }
+    },
+    "remoteUser": "vscode",
+    "runArgs": [
+        "--network=host",
+        "--cap-add=SYS_PTRACE",
+        "--security-opt", "seccomp=unconfined"
+    ],
+    "postCreateCommand": "sudo chown -R vscode:vscode /workspaces"
+}
